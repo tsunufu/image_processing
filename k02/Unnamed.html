@@ -1,0 +1,18 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <title></title><meta name="generator" content="DocBook MathWorks XSL Stylesheets V1.75.2-mathworks"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div lang="ja" class="sect1"><div class="titlepage"><hr></div><pre xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd"><span style="color:green">% 1. &#12464;&#12524;&#12540;&#12473;&#12465;&#12540;&#12523;&#12395;&#12377;&#12427;&#12290;</span>
+img = imread(<span style="color:#B20000">'Lenna.bmp'</span>);
+grayImg = rgb2gray(img);
+<span style="color:green">% 2-1. &#12450;&#12501;&#12451;&#12531;&#22793;&#25563;&#34892;&#21015;&#12434;&#20351;&#12387;&#12383;&#22580;&#21512;</span>
+theta = 30 * pi / 180; <span style="color:green">% 30&#24230;&#22238;&#36578;</span>
+A = [cos(theta) sin(theta) 0; -sin(theta) cos(theta) 0; 0 0 1]; <span style="color:green">% &#22238;&#36578;&#34892;&#21015;</span>
+tform = affine2d(A);
+affineImg = imwarp(grayImg, tform);
+<span style="color:green">% 2-2. imrotate&#12434;&#20351;&#12387;&#12383;&#22580;&#21512;</span>
+imrotateImg = imrotate(grayImg, -30, <span style="color:#B20000">'bilinear'</span>, <span style="color:#B20000">'crop'</span>);
+<span style="color:green">% &#32080;&#26524;&#12434;&#34920;&#31034;&#12377;&#12427;&#12290;</span>
+figure(1);
+subplot(1, 3, 1); imshow(grayImg); title(<span style="color:#B20000">'Original'</span>);
+subplot(1, 3, 2); imshow(affineImg); title(<span style="color:#B20000">'Affine Transform'</span>);
+subplot(1, 3, 3); imshow(imrotateImg); title(<span style="color:#B20000">'imrotate'</span>);
+</pre><div class="mediaobject"><img src="./Unnamed_html_files/image-000-hg.png"></div></div></body></html>
